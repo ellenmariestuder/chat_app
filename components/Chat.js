@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Platform, KeyboardAvoidingView, StyleSheet, Text } from 'react-native';
 import { GiftedChat, Bubble } from 'react-native-gifted-chat';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const firebase = require('firebase');
 require('firebase/firestore');
@@ -27,11 +28,23 @@ export default class Chat extends React.Component {
     }
 
     this.referenceMessages = firebase.firestore().collection('messags')
-    // this.referenceMessageUser = null;
-    // this.referenceMessages = null;
   }
 
+  async getMessages() {
+    let messages = '';
+    try {
+      messages = await AsyncStorage.getItem('messages') || [];
+      this.setState({
+        messages: JSON.parse(messagse)
+      });
+    }
+    catch (error) {
+      console.log(error.message);
+    }
+  };
+
   componentDidMount() {
+    //  pull in user's name; set to page header
     const name = this.props.route.params.name;
     this.props.navigation.setOptions({ title: name })
 
@@ -63,6 +76,9 @@ export default class Chat extends React.Component {
         .orderBy('createdAt', 'desc')
         .onSnapshot(this.onCollectionUpdate);
     });
+
+    // function to load messages from asyncStorage
+    this.getMessages();
 
     // // create reference to active user's documents
     // this.referenceMessageUser = firebase
@@ -111,6 +127,14 @@ export default class Chat extends React.Component {
     });
   }
 
+  async saveMessages() {
+    try {
+      await AsyncStorage.setItem('messages', JSON.stringify(this.state.messages));
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+
   onSend(messages = []) {
     this.setState(previousState => ({
       // Append new messages to the existing thread displayed on the UI
@@ -118,8 +142,20 @@ export default class Chat extends React.Component {
     }),
       // store new messages in firestore by calling the 'addMessage' function
       () => {
-        this.addMessage();
+        // this.addMessage();
+        this.saveMessage();
       });
+  }
+
+  async deleteMessages() {
+    try {
+      await AsyncStorage.removeItem('messages');
+      this.setState({
+        messages: []
+      })
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 
   renderBubble(props) {
