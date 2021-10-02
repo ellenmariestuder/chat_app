@@ -1,7 +1,9 @@
 import React from 'react';
 import { View, Platform, KeyboardAvoidingView, StyleSheet, Text } from 'react-native';
 import { GiftedChat, Bubble } from 'react-native-gifted-chat';
-import AsyncStorage from '@react-native-community/async-storage';
+// import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+// import { AsyncStorage } from 'react-native';
 
 const firebase = require('firebase');
 require('firebase/firestore');
@@ -11,8 +13,12 @@ export default class Chat extends React.Component {
     super();
     this.state = {
       messages: [],
-      uid: '',
-      loggedInText: ''
+      user: {
+        _id: '',
+        // name: '',
+      }
+      // uid: '',
+      // loggedInText: ''
     }
 
     if (!firebase.apps.length) {
@@ -27,7 +33,7 @@ export default class Chat extends React.Component {
       });
     }
 
-    this.referenceMessages = firebase.firestore().collection('messags')
+    this.referenceMessages = firebase.firestore().collection('messages')
   }
 
   async getMessages() {
@@ -35,7 +41,7 @@ export default class Chat extends React.Component {
     try {
       messages = await AsyncStorage.getItem('messages') || [];
       this.setState({
-        messages: JSON.parse(messagse)
+        messages: JSON.parse(messages)
       });
     }
     catch (error) {
@@ -57,20 +63,13 @@ export default class Chat extends React.Component {
 
       // update user state with currently active user data
       this.setState({
-        user: user.uid,
-        messages: [
-          {
-            _id: 2,
-            text: `${this.props.route.params.name} has joined the chat.`,
-            createdAt: new Date(),
-            system: true,
-          },
-        ],
+        // user: user.uid,
+        messages: [],
         user: {
           _id: user.uid,
           // name: name,
         },
-        loggedInText: `${this.props.route.params.name} has entered the chat`,
+        // loggedInText: `${this.props.route.params.name} has entered the chat`,
       });
       this.unsubscribe = this.referenceMessages
         .orderBy('createdAt', 'desc')
@@ -89,13 +88,6 @@ export default class Chat extends React.Component {
     // // listen to collection changes for current user
     // this.unsubscribeMessageUser = this.referenceMessageUser.onSnapshot(this.onCollectionUpdate)
 
-  }
-
-  componentWillUnmount() {
-    // stop listening to authentication
-    this.authUnsubscribe();
-    // stop listening for changes
-    this.unsubscribe();
   }
 
   onCollectionUpdate = (querySnapshot) => {
@@ -129,7 +121,8 @@ export default class Chat extends React.Component {
 
   async saveMessages() {
     try {
-      await AsyncStorage.setItem('messages', JSON.stringify(this.state.messages));
+      await AsyncStorage.setItem('messages',
+        JSON.stringify(this.state.messages));
     } catch (error) {
       console.log(error.message);
     }
@@ -142,8 +135,8 @@ export default class Chat extends React.Component {
     }),
       // store new messages in firestore by calling the 'addMessage' function
       () => {
-        // this.addMessage();
-        this.saveMessage();
+        this.addMessage();
+        this.saveMessages();
       });
   }
 
@@ -170,6 +163,13 @@ export default class Chat extends React.Component {
         }}
       />
     )
+  }
+
+  componentWillUnmount() {
+    // stop listening to authentication
+    this.authUnsubscribe();
+    // stop listening for changes
+    this.unsubscribe();
   }
 
   render() {
