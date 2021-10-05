@@ -16,6 +16,7 @@ export default class Chat extends React.Component {
         _id: '',
         // name: '',
       },
+      uid: 0,
       // loggedInText: '',
       isConnected: false,
     }
@@ -190,7 +191,7 @@ export default class Chat extends React.Component {
         {/* <Text>{this.state.loggedInText}</Text> */}
         <GiftedChat
           renderBubble={this.renderBubble.bind(this)}
-          renderInputToolbar={this.renderInputToolbar}
+          renderInputToolbar={this.renderInputToolbar.bind(this)}
           messages={this.state.messages}
           onSend={messages => this.onSend(messages)}
           user={this.state.user}
