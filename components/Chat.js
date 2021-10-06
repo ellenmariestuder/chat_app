@@ -104,6 +104,7 @@ export default class Chat extends React.Component {
         createdAt: data.createdAt.toDate(),
         user: data.user,
         image: data.image,
+        location: data.location,
         // location: {
         //   latitude: data.latitude, 
         //   longitude: data.longitude,
@@ -120,15 +121,15 @@ export default class Chat extends React.Component {
     // add a new message to the collection
     this.referenceMessages.add({
       _id: message._id,
-      text: message.text,
+      text: message.text || '',
       createdAt: message.createdAt,
       user: message.user,
-      image: message.image,
+      image: message.image || null,
+            location: message.location || null,
       // location: {
       //   latitude: message.latitude, 
       //   longitude: message.longitude,
-      // },
-      // location: message.location,
+      // } || null,
     });
   }
 
@@ -230,6 +231,7 @@ export default class Chat extends React.Component {
           renderBubble={this.renderBubble.bind(this)}
           renderInputToolbar={this.renderInputToolbar.bind(this)}
           renderActions={this.renderCustomActions.bind(this)}
+          renderCustomView={this.renderCustomView.bind(this)}
           messages={this.state.messages}
           onSend={messages => this.onSend(messages)}
           user={this.state.user}
