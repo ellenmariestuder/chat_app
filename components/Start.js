@@ -27,7 +27,7 @@ export default class Start extends React.Component {
               placeholder='Your Name' />
 
             {/* allow users to designate their chat background color */}
-            <Text style={styles.text}>Choose Background Color: </Text>
+            <Text style={styles.text}>Choose Chat Color: </Text>
             <View style={styles.chooseColor}>
               <TouchableOpacity style={[styles.colorDot, styles.dot1]}
                 onPress={() => this.setState({ color: '#090C08' })}></TouchableOpacity>
