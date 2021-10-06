@@ -27,7 +27,7 @@ export default class Start extends React.Component {
               placeholder='Your Name' />
 
             {/* allow users to designate their chat background color */}
-            <Text style={styles.text}>Choose Chat Color: </Text>
+            <Text style={styles.text}>Choose Chat Bubble Color: </Text>
             <View style={styles.chooseColor}>
               <TouchableOpacity style={[styles.colorDot, styles.dot1]}
                 onPress={() => this.setState({ color: '#090C08' })}></TouchableOpacity>
@@ -77,10 +77,11 @@ const styles = StyleSheet.create({
   },
 
   box: {
-    flex: .88,
+    flex: 1,
     backgroundColor: 'white',
     margin: 20,
     padding: 22,
+    marginBottom: 75,
   },
 
   text: {
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 5,
     padding: 10,
-    marginBottom: 20,
+    marginBottom: 30,
   },
 
   opacity50: {
@@ -133,7 +134,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: 50,
     backgroundColor: '#757083',
-    marginTop: 15,
+    marginTop: 25,
   },
 
   chatBtnTxt: {
