@@ -49,7 +49,7 @@ export default class CustomActions extends React.Component {
 
         if (!result.cancelled) {
           const imageUrl = await this.uploadImageFetch(result.uri);
-          this.props.onSend({ image: imageUrl, useNativeDriver: false });
+          this.props.onSend({ image: imageUrl });
         }
       }
     } catch (error) {
@@ -68,7 +68,7 @@ export default class CustomActions extends React.Component {
 
         if (!result.cancelled) {
           const imageUrl = await this.uploadImageFetch(result.uri);
-          this.props.onSend({ image: imageUrl, useNativeDriver: false });
+          this.props.onSend({ image: imageUrl });
         }
       }
     } catch (error) {
@@ -95,7 +95,6 @@ export default class CustomActions extends React.Component {
               latitude: result.coords.latitude,
               longitude: result.coords.longitude,
             },
-            useNativeDriver: false
           });
         }
       }

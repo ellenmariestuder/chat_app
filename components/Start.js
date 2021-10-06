@@ -77,11 +77,11 @@ const styles = StyleSheet.create({
   },
 
   box: {
-    flex: 1,
+    flex: .8,
     backgroundColor: 'white',
     margin: 20,
     padding: 22,
-    marginBottom: 75,
+    marginBottom: 85,
   },
 
   text: {
