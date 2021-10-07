@@ -22,7 +22,7 @@ Chat App is a React Native chat application for both Android and iOS, built usin
 
 ## Setup (Repository) 
 ### Clone this repository 
-`git clone https://github.com/ellenmariestuder/chat_app/`
+`git clone https://github.com/ellenmariestuder/chat_app.git`
 
 ### Change directory to the project's root directory
 `cd chat_app`
