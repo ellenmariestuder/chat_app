@@ -5,32 +5,74 @@ Chat App is a React Native chat application for both Android and iOS, built usin
 ## Technologies Used:
 * React Native  
 * Expo  
+* Firebase/ Firestore 
 
 ## Key Features:  
 * Home screen where users can enter a display name and select a background color for the chat interface  
+* Chat interfact where users can...   
+  - send text messages    
+  - send photos from their camera library    
+  - take new photos and send   
+  - share current location     
+  - view messages offline  
 
 &nbsp; 
 
 # Getting Started  
-## Requirements:  
-* Node.js  
-* Expo Command Line Interface (CLI)   
-  
-`npm install --gloabl expo-cli`  
+
+## Setup (Repository) 
+### Clone this repository 
+`git clone https://github.com/ellenmariestuder/chat_app/`
+
+### Change directory to the project's root directory
+`cd chat_app`
+
+### Install dependencies
+`npm install`  
+
+### Run the project using expo 
+`expo start` or `npx expo start`   
+
+&nbsp;
+
+## Setup (Other)
+### Create an Expo account   
+Set up an [Expo account](expo.dev), then download the Expo app on your smartphone from the App Store. (Take a look at Expo's ['Get Started' documentation](https://docs.expo.dev/get-started/installation/) for additional details.)
+
+From there, you can open the chat app on your phone by scanning the QR code that gets generated after running `expo start`.
 
 &nbsp; 
-## Setup 
-Clone this repo (or download files); install dependencies  
+
+### Set Up a firebase database 
+Set up a [Firestore database](https://firebase.google.com/). Details on how to set up the database can be found in the [Firebase documentation](https://firebase.google.com/docs).    
+
+_Note: You will need to replace the firebaseConfig far in `Chat.js` with your own database configuration, which can be found in_ Project Settings _in Firebase_.)
 
 &nbsp; 
-## Run the App  
-To launch the app, run the following command in your terminal:   
 
-`expo start`  ( or `npx expo start`, if on Mac )   
+# Stack, Dependencies, Environment
 
-_Note: you will need to set up an Expo [expo.dev] account before you can view/ run the app._ 
+## Stack 
+React Native  
 
-&nbsp; 
-## Viewing the app   
-You can run this app on your mobile device by downloading the Expo app from the app store. 
+## Dependencies   
+* expo 
+* expo-image-picker 
+* expo-location 
+* firebase 
+* netinfo
+* prop-types 
+* react 
+* react-native 
+* react-native-async-storage 
+* react-native-gifted-chat
+* react-native-gesture-handler 
+* react-native-maps
+* react-navigation
+* react-navigation-stcak 
+
+## Environment  
+* Visual Studio Code v1.60.1
+* npm v7.18.1
+* node v14.16.1
 
