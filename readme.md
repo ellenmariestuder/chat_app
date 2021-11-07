@@ -1,14 +1,14 @@
 # Chat Application 
 
+<!-- <p align="center">
+  <img src="meet.png" title="chat app">
+</p> -->
+
 Chat App is a React Native chat application for both Android and iOS, built using React Native.
 
-## Technologies Used:
-* React Native  
-* Expo  
-* Firebase/ Firestore 
-
-## Key Features:  
+# Key Features
 * Home screen where users can enter a display name and select a background color for the chat interface  
+
 * Chat interfact where users can...   
   - send text messages    
   - send photos from their camera library    
@@ -16,22 +16,37 @@ Chat App is a React Native chat application for both Android and iOS, built usin
   - share current location     
   - view messages offline  
 
-&nbsp; 
+# Technologies
+* React Native  
+* Expo  
+* Firebase/ Firestore 
 
 # Getting Started  
 
 ## Setup (Repository) 
 ### Clone this repository 
-`git clone https://github.com/ellenmariestuder/chat_app.git`
+```
+git clone https://github.com/ellenmariestuder/chat_app.git
+```
 
 ### Change directory to the project's root directory
-`cd chat_app`
+```
+cd chat_app
+```
 
 ### Install dependencies
-`npm install`  
+```
+npm install
+```  
 
 ### Run the project using expo 
-`expo start` or `npx expo start`   
+```
+expo start
+``` 
+or 
+```
+npx expo start
+```   
 
 &nbsp;
 
@@ -50,10 +65,7 @@ _Note: You will need to replace the firebaseConfig far in `Chat.js` with your ow
 
 &nbsp; 
 
-# Stack, Dependencies, Environment
-
-## Stack 
-React Native  
+# Dependencies & Environment
 
 ## Dependencies   
 * expo 
